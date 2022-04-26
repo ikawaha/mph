@@ -28,7 +28,7 @@ func TestBuild_stress(t *testing.T) {
 func testTable(t *testing.T, keys []string, extra []string) {
 	table := Build(keys)
 	for i, key := range keys {
-		n, ok := table.Lookup(key)
+		n, ok := Lookup(table, key)
 		if !ok {
 			t.Errorf("Lookup(%s): got !ok; want ok", key)
 			continue
@@ -38,7 +38,7 @@ func testTable(t *testing.T, keys []string, extra []string) {
 		}
 	}
 	for _, key := range extra {
-		if _, ok := table.Lookup(key); ok {
+		if _, ok := Lookup(table, key); ok {
 			t.Errorf("Lookup(%s): got ok; want !ok", key)
 		}
 	}
@@ -68,7 +68,7 @@ func BenchmarkTable(b *testing.B) {
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
 		j := i % len(words)
-		n, ok := benchTable.Lookup(words[j])
+		n, ok := Lookup(benchTable, words[j])
 		if !ok {
 			b.Fatal("missing key")
 		}

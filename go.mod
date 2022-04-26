@@ -1,3 +1,3 @@
-module github.com/cespare/mph
+module github.com/ikawaha/mph
 
-go 1.17
+go 1.18

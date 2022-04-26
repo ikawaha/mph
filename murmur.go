@@ -22,8 +22,8 @@ const (
 	n       = 0xe6546b64
 )
 
-// hash computes the 32-bit Murmur3 hash of s using ms as the seed.
-func (ms murmurSeed) hash(s string) uint32 {
+// murmurHash computes the 32-bit Murmur3 hash of s using ms as the seed.
+func murmurHash[T string | []byte](ms murmurSeed, s T) uint32 {
 	h := uint32(ms)
 	l := len(s)
 	numBlocks := l / 4
